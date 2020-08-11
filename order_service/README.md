@@ -1,24 +1,38 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Executando o projeto:
 
-Things you may want to cover:
+Construa a imagem dos containers
+```
+$ docker-compose build
+```
 
-* Ruby version
+Execute os containers
+```
+$ docker-compose up -d
+```
 
-* System dependencies
+Instalação de gemas no container da api
+```
+$ docker-compose run api bundle install
+```
 
-* Configuration
+Criação do banco de dados
+```
+$ docker-compose run api rake db:create
+```
 
-* Database creation
+Excução de migrações do banco
+```
+$ docker-compose run api rake db:migrate
+```
 
-* Database initialization
+Migração do banco para ambiente de teste
+```
+$ docker-compose run api rake db:migrate RAILS_ENV=test
+```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Executando testes do rspec
+```
+$ docker-compose run api rspec
+```
