@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_11_202206) do
+ActiveRecord::Schema.define(version: 2020_08_12_150214) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "city"
@@ -18,38 +18,36 @@ ActiveRecord::Schema.define(version: 2020_08_11_202206) do
     t.string "street"
     t.string "uf"
     t.string "zip_code"
-    t.bigint "order_id"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_addresses_on_order_id"
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "address_id"
+    t.bigint "request_info_id"
+    t.bigint "user_info_id"
   end
 
   create_table "request_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "question"
-    t.string "answer"
-    t.bigint "order_id"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_request_infos_on_order_id"
+    t.string "question1"
+    t.string "question2"
+    t.string "question3"
   end
 
   create_table "user_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "phone"
     t.string "name"
     t.string "email"
-    t.bigint "order_id"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_user_infos_on_order_id"
   end
 
 end

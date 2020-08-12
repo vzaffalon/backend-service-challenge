@@ -12,15 +12,23 @@ class OrdersController < ApplicationController
         if @order.save
           render json: @order
         else
-          render json: @order.errors, status: :unprocessable_entity
+          render json: ErrorSerializer.serialize(@order), status: :unprocessable_entity
         end      
+    end
+
+    def update
+        if @order.update_attributes(orders_params)
+          render json: @order
+        else
+          render json: ErrorSerializer.serialize(@order), status: :unprocessable_entity
+        end
     end
   
     def orders_params
-          params.permit(      
+          params.permit(   
               address_attributes: %i[id city neighborhood street uf zip_code],
               user_info_attributes: %i[id phone email name],
-              request_info_attributes: %i[id question answer],
+              request_info_attributes: %i[id question1 question2 question3],
           )
     end
 end
