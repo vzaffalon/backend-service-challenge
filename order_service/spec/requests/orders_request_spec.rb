@@ -27,10 +27,23 @@ RSpec.describe "Orders", type: :request do
                     "question3": "answer3"
                   }}
                 post "/orders", params: params 
+                @created_order = JSON.parse(response.body)
             end
 
-            it 'return order created' do
-                expect(JSON.parse(response.body).id).not_to eq(nil)
+            it 'created order' do
+                expect(@created_order['id']).not_to eq(nil)
+            end
+
+            it 'created user_info' do
+                expect(@created_order['user_info']['id']).not_to eq(nil)
+            end
+
+            it 'created address' do
+                expect(@created_order['address']['id']).not_to eq(nil)
+            end
+
+            it 'created request_info' do
+                expect(@created_order['request_info']['id']).not_to eq(nil)
             end
 
         end
