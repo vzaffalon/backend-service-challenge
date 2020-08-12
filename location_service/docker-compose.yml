@@ -1,0 +1,12 @@
+version: '3'
+services:
+  ruby:
+    image: ruby:2.5.8
+    command: bash -c 'bundle install && bundle exec shoryuken -q Location -r ./location_worker.rb'
+    working_dir: /usr/app/
+    volumes:
+      - ./:/usr/app/
+    environment:
+        AWS_ACCESS_KEY_ID: AKIA3WWRFW6GUHDDIXXN
+        AWS_SECRET_ACCESS_KEY: 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
+        AWS_REGION: "us-east-1"
