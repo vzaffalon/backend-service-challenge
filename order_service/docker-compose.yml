@@ -27,9 +27,25 @@ services:
      RAILS_ENV: development
      ORDER_SERVICE_DATABASE_PASSWORD: 123456
      RAILS_MAX_THREADS: 5
+     AWS_ACCESS_KEY_ID: AKIA3WWRFW6GUHDDIXXN
+     AWS_SECRET_ACCESS_KEY: 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
+     AWS_REGION: "us-east-1"
    volumes:
       - ".:/app"
       - "./config/database.yml:/app/config/database.yml"
+
+  shoryuken:
+   depends_on:
+      - 'api'
+   build: .
+   container_name: shoryuken
+   command: 'bundle exec shoryuken -q LocationResponse -R'
+   volumes:
+      - '.:/app'
+   environment:
+      AWS_ACCESS_KEY_ID: AKIA3WWRFW6GUHDDIXXN
+      AWS_SECRET_ACCESS_KEY: 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
+      AWS_REGION: "us-east-1"
 
 volumes:
   db:

@@ -6,10 +6,10 @@ class OrdersController < ApplicationController
       params[:request_info_attributes] = params.delete :request_info
     end
 
-
     def create
         @order = Order.new(orders_params)
         if @order.save
+          @order.send_order_to_queue
           render json: @order
         else
           render json: ErrorSerializer.serialize(@order), status: :unprocessable_entity
