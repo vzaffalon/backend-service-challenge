@@ -10,6 +10,10 @@ class Order < ApplicationRecord
 
 
     def send_order_to_queue
-        Shoryuken::Client.queues('location').send_message('test')
+        payload = {
+            address: self.address.get_full_address,
+            order_id: self.id
+        }
+        Shoryuken::Client.queues('location').send_message(payload.to_json)
     end
 end
