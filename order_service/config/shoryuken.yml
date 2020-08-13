@@ -1,3 +1,4 @@
-concurrency: 15
+concurrency: 3
+delay: 0
 queues:
-  - [LocationResponse, 1]
+  - location-response

@@ -2,7 +2,7 @@ version: '3'
 services:
   ruby:
     image: ruby:2.5.8
-    command: bash -c 'bundle install && bundle exec shoryuken -q Location -r ./location_worker.rb'
+    command: bash -c 'bundle install && bundle exec shoryuken -q location -r ./location_worker.rb'
     working_dir: /usr/app/
     volumes:
       - ./:/usr/app/

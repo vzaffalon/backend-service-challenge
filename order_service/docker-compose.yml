@@ -2,50 +2,40 @@ version: "3"
 
 services:
   db:
-   image: "mysql:5.7"
-   environment:
-     MYSQL_ROOT_PASSWORD: root
-     MYSQL_USERNAME: root
-     MYSQL_PASSWORD: root
-   volumes:
-      - my-datavolume:/var/lib/mysql 
-   ports:
+    image: "mysql:5.7"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: root
+    volumes:
+      - my-datavolume:/var/lib/mysql
+    ports:
       - "3307:3306"
   api:
-   depends_on:
+    depends_on:
       - "db"
-   build:
-    context: .      
-    dockerfile: ./Dockerfile
-   ports:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
       - "3000:3000"
-   environment:
-     DB_USERNAME: root
-     DB_PASSWORD: root
-     DB_PORT: 3306
-     DB_HOST: db
-     RAILS_ENV: development
-     ORDER_SERVICE_DATABASE_PASSWORD: 123456
-     RAILS_MAX_THREADS: 5
-     AWS_ACCESS_KEY_ID: AKIA3WWRFW6GUHDDIXXN
-     AWS_SECRET_ACCESS_KEY: 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
-     AWS_REGION: "us-east-1"
-   volumes:
+    env_file:
+      - '.env'
+    volumes:
       - ".:/app"
       - "./config/database.yml:/app/config/database.yml"
 
   shoryuken:
-   depends_on:
-      - 'api'
-   build: .
-   container_name: shoryuken
-   command: 'bundle exec shoryuken -q LocationResponse -R'
-   volumes:
-      - '.:/app'
-   environment:
-      AWS_ACCESS_KEY_ID: AKIA3WWRFW6GUHDDIXXN
-      AWS_SECRET_ACCESS_KEY: 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
-      AWS_REGION: "us-east-1"
+    depends_on:
+      - "api"
+      - "db"
+    build: .
+    container_name: shoryuken
+    command: "bundle exec shoryuken -R -C config/shoryuken.yml -r ./app/workers"
+    volumes:
+      - ".:/app"
+    env_file:
+      - '.env'
 
 volumes:
   db:

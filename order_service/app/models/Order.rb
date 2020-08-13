@@ -10,6 +10,6 @@ class Order < ApplicationRecord
 
 
     def send_order_to_queue
-        Shoryuken::Client.queues('Location').send_message('test')
+        Shoryuken::Client.queues('location').send_message('test')
     end
 end
