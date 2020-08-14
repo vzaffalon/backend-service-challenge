@@ -6,3 +6,4 @@ ruby '2.5.8'
 gem 'aws-sdk-sqs'
 gem 'shoryuken'
 gem 'geocoder'
+gem 'rubocop', '~> 0.89.1', require: false

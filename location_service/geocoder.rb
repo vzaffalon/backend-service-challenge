@@ -22,7 +22,7 @@ module Location
         # Calculation options
         # units: :mi,                 # :km for kilometers or :mi for miles
         # distances: :linear          # :spherical or :linear
-        api_key: "AIzaSyCZ3t2cRV_dOGCejGne_E_MRUayQfhZSrs",
+        api_key: "AIzaSyB6kfhGaobXeCQSWRKtd3PIh8vvYFuFo6Q",
         always_raise: :all
     )
       

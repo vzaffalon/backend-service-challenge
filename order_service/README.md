@@ -36,3 +36,5 @@ Executando testes do rspec
 ```
 $ docker-compose run api rspec
 ```
+
+O serviço está configurado para rodar na porta 3000.
