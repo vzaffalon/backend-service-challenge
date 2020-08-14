@@ -139,9 +139,12 @@ Método: Get
 
 Para instruções de como executar cada serviço, veja o README da pasta do serviço.
 
-Acesso ao banco localhost:
+Acesso ao banco de dados localhost:
+
 user root
+
 password root
+
 porta 3307
 
 ### Gemas utilizadas no location service:
