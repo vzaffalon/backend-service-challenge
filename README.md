@@ -1,8 +1,7 @@
 # backend-service-challenge
 
-
-
 ### Funcionamento do projeto
+
 O projeto é constítuido de dois serviços:
 
     -location_service
@@ -24,14 +23,16 @@ Depois o location_service insere os dados de latitude e longitude na fila locati
 
 O worker do shoryuken do order_service recebe os dados de latitude e longitude da fila location-response e chama o método do model do pedido para atualizar no banco de dados a latitude e longitude.
 
-
-
+Caso o serviço da google esteja indisponível, o worker do shoryuken faz o retry a cada 30 segundos.
 
 ### Exemplo de requisição de criação da order:
+
 #### Rota: /orders
+
 Método: Post
 
 Parâmetros:
+
 ```
 {
     "user_info": {
@@ -55,6 +56,7 @@ Parâmetros:
 ```
 
 Exemplo de retorno de sucesso:
+
 ```
 {
     "id": 5,
@@ -93,6 +95,7 @@ Exemplo de retorno de sucesso:
 ```
 
 ### Exemplo de requisição de visualização da order:
+
 #### Rota: /orders/:id
 
 Método: Get
@@ -136,9 +139,8 @@ Método: Get
 
 Para instruções de como executar cada serviço, veja o README da pasta do serviço.
 
-
-
 ### Gemas utilizadas no location service:
+
 **shoryuken**: Processador de mensagens da amazon SQS com threads.
 
 **rubocop**: Análise estatica de código.
@@ -146,6 +148,7 @@ Para instruções de como executar cada serviço, veja o README da pasta do serv
 **geocoder**: Interface ruby para conectar e fazer requests na api do google maps.
 
 ### Gemas utilizadas na order service:
+
 **shoryuken**: Processador de mensagens da amazon SQS com threads.
 
 **active_model_serializers**: Criação de serializers de retorno de respostas da api.
@@ -154,8 +157,6 @@ Para instruções de como executar cada serviço, veja o README da pasta do serv
 
 **rspec-rails**: Usado para implementação de teste unitários e de integração.
 
-**factory_bot_rails**: Criação de factories para instanciação de models para implementação dos testes do rspec.
-
 **database_cleaner-active_record**: Limpa o banco de dados antes de cada teste.
 
-**faker**: Generate fake data.
+**factory_bot_rails**: Criação de factories para instanciação de models para implementação dos testes do rspec.

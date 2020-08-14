@@ -19,10 +19,9 @@ class OrdersController < ApplicationController
     def create
         @order = Order.new(orders_params)
         if @order.save
-          @order.send_order_to_queue
           render json: @order
         else
-          render json: ErrorSerializer.serialize(@order), status: :unprocessable_entity
+          render json: @order.errors, status: :unprocessable_entity
         end      
     end
 
@@ -30,7 +29,7 @@ class OrdersController < ApplicationController
         if @order.update_attributes(orders_params)
           render json: @order
         else
-          render json: ErrorSerializer.serialize(@order), status: :unprocessable_entity
+          render json: @order.errors, status: :unprocessable_entity
         end
     end
   
