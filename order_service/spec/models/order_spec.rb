@@ -16,11 +16,11 @@ RSpec.describe "Order", type: :model do
             Order.set_location(payload)
         end
 
-        it 'set latitude' do
+        it 'latitude is set' do
             expect(Order.find(@order.id).latitude).to eq(-23.5824)
         end
 
-        it 'set longitude' do
+        it 'longitude is set' do
             expect(Order.find(@order.id).longitude).to eq(-46.6702)
         end
     end
