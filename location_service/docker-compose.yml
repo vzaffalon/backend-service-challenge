@@ -7,6 +7,6 @@ services:
     volumes:
       - ./:/usr/app/
     environment:
-        AWS_ACCESS_KEY_ID: AKIA3WWRFW6GUHDDIXXN
-        AWS_SECRET_ACCESS_KEY: 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
+        AWS_ACCESS_KEY_ID:
+        AWS_SECRET_ACCESS_KEY:
         AWS_REGION: "sa-east-1"

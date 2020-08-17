@@ -2,6 +2,9 @@
 
 ### Funcionamento do projeto
 
+Para quem for executar o código:
+É necessário substituir as chaves da amazon no arquivo .env do order service e no docker compose do location_service pelas chaves que passei para josimara.
+
 O projeto é constítuido de dois serviços:
 
     -location_service
